@@ -13,7 +13,7 @@ def task_1_fix_names_start_letter(data: DT) -> DT:
     Examples:
         fix_names_start_letters([{'name': 'Alex', 'age': 26}, {'name': 'denys', 'age': 89}])
         >>> [{'name': 'Alex', 'age': 26}, {'name': 'Denys', 'age': 89}]
-    # """
+    """
 
     return [{key: item.title() if type(item) == str else item for key, item in person.items()} for person in data]
 
