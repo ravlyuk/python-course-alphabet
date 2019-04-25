@@ -212,8 +212,6 @@ def task_14_list_products_with_supplier_information(cur):
                        FROM products 
                        LEFT JOIN suppliers 
                        ON products.supplierid = suppliers.supplierid """)
-
-
     return cur.fetchall()
 
 
@@ -227,11 +225,8 @@ def task_15_list_customers_with_any_order_or_not(cur):
     Returns: 213 records
     """
 
-    cur.execute("""SELECT customers.customername, customers.contactname, customers.country, orders.orderid
-                   FROM customers 
-                   LEFT JOIN orders
-                   ON customers.customerid = orders.customerid""")
-
+    cur.execute("""SELECT customername, contactname, country, orderid FROM customers 
+                   LEFT JOIN orders ON customers.customerid = orders.customerid""")
     return cur.fetchall()
 
 
