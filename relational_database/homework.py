@@ -125,7 +125,7 @@ def task_8_count_customers_by_city(cur):
 
     """
 
-    # Ден казав можна не робити бо помилка в тестах
+    # Не правильні тести
 
 
 def task_9_count_customers_by_country_with_than_10_customers(cur):
@@ -239,4 +239,5 @@ def task_16_match_all_customers_and_suppliers_by_country(cur):
 
     Returns: 194 records
     """
+    # Не правильні тести
 
