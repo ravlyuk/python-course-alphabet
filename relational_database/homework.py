@@ -239,5 +239,11 @@ def task_16_match_all_customers_and_suppliers_by_country(cur):
 
     Returns: 194 records
     """
-    # Не правильні тести
+
+    cur.execute("""SELECT customers.customername customername, customers.address address,
+            customers.country customercountry, suppliers.country suppliercountry, suppliers.suppliername suppliername
+            FROM customers FULL OUTER JOIN suppliers ON customers.country = suppliers.country
+            ORDER BY customercountry, suppliercountry;""")
+    return cur.fetchall()
+
 
