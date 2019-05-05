@@ -1,5 +1,5 @@
 from typing import List, Dict, Union, Generator
-
+import string, random
 # We will work with such dicts
 ST = Dict[str, Union[str, int]]
 # And we will put this dicts in list
@@ -71,6 +71,7 @@ def task_5_min_value_strings(data: List[Union[str, int]]) -> str:
         resoult = min([len(str(x)) for x in data])
         min_value = [str(x) for x in data if len(str(x)) == resoult][0]
     return min_value
+
 
 
 def task_6_min_value_list_of_dicts(data: DT, key: str) -> ST:
@@ -163,6 +164,5 @@ def task_11_create_list_of_random_characters() -> List[str]:
     Create list of 20 elements where each element is random letter from latin alphabet
 
     """
-    import string, random
-    my_list = [random.choice(string.ascii_lowercase) for _ in range(20)]
-    return my_list
+
+    return [random.choice(string.ascii_lowercase) for _ in range(20)]
