@@ -14,18 +14,12 @@ def task_1_fix_names_start_letter(data: DT) -> DT:
         fix_names_start_letters([{'name': 'Alex', 'age': 26}, {'name': 'denys', 'age': 89}])
         >>> [{'name': 'Alex', 'age': 26}, {'name': 'Denys', 'age': 89}]
     """
-    result = {}
-    last_list = []
-    for i in data:
-        for y in i:
-            if i[y] == str(i[y]):
-                result.update({y: (i[y]).capitalize()})
-                r = result.copy()
-            else:
-                result.update({y: i[y]})
-                r = result.copy()
-        last_list.append(r)
-    return last_list
+    for elements in data:
+        if type(elements.get('name')) == str:
+            elements.update({'name': elements.get('name').capitalize()})
+        else:
+            elements.get('name')
+    return data
 
 
 def task_2_remove_dict_fields(data: DT, redundant_keys: List[str]) -> DT:
@@ -54,23 +48,16 @@ def task_4_min_value_integers(data: List[int]) -> int:
     """
     Find and return minimum value from list
     """
-    if data == []:
-        resoult = None
-    else:
-        resoult = min(data)
-    return resoult
+    if data:
+        return min(data)
 
 
 def task_5_min_value_strings(data: List[Union[str, int]]) -> str:
     """
     Find the longest string
     """
-    if data == []:
-        min_value = None
-    else:
-        resoult = min([len(str(x)) for x in data])
-        min_value = [str(x) for x in data if len(str(x)) == resoult][0]
-    return min_value
+    if data:
+        return min([str(x) for x in data], key=len)
 
 
 
@@ -139,23 +126,13 @@ def task_10_generator_of_simple_numbers() -> Generator[int, None, None]:
         next(a)
         >>> 3
     """
-    new_list = []
-    for i in range(2,200):
-        is_simple = True
-
-        if i == 1 or i == 2:
-            new_list.append(i)
-            continue
-
-        for j in range(2, i):
-
-            if i % j == 0:
-                is_simple = False
-                break
-
-        if is_simple:
-            new_list.append(i)
-    return iter(new_list)
+    for num in range(1, 201):
+        if num > 1:
+            for i in range(2, num):
+                if num % i == 0:
+                    break
+            else:
+                yield num
 
 
 
