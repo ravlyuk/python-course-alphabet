@@ -186,22 +186,20 @@ class Garage:
         return sum([car.price for car in self.cars])
 
 
-# === Installation ===
+
+# === Installation objects ===
 
 auto1 = Car(5000, 2, random.choice(CARS_PRODUCER), random.choice(CARS_TYPES))
 auto2 = Car(7000, 5, random.choice(CARS_PRODUCER), random.choice(CARS_TYPES))
 auto3 = Car(10000, 7, random.choice(CARS_PRODUCER), random.choice(CARS_TYPES))
 
-
 cesar1 = Cesar('Tony Stark')
 cesar2 = Cesar('Ilon Mask')
 cesar3 = Cesar('Vin Diesel')
 
-
 garage1 = Garage(random.choice(TOWNS), 2)
 garage2 = Garage(random.choice(TOWNS), 3)
 garage3 = Garage(random.choice(TOWNS), 5)
-
 
 
 
@@ -234,8 +232,6 @@ print(garage1)
 print(colored(f'\n\nThe sum price of all cars in the garage 1\n', 'blue'))
 result_hit_hat = garage1.hit_hat()
 print(colored('SUM : ', 'green'), result_hit_hat)
-
-
 
 
 
@@ -282,23 +278,21 @@ print(colored('After  : ', 'green'), auto3.number)
 
 print(colored(f'\n\nCar comparison\n', 'blue'))
 
-print(colored('__lt__ : ', 'green'), auto1.__lt__(auto2))
-print(colored('__le__ : ', 'green'), auto1.__le__(auto2))
-print(colored('__eq__ : ', 'green'), auto1.__eq__(auto2))
-print(colored('__ne__ : ', 'green'), auto1.__ne__(auto2))
-print(colored('__gt__ : ', 'green'), auto1.__gt__(auto2))
-print(colored('__ge__ : ', 'green'), auto1.__ge__(auto2))
+print(colored('<  : ', 'green'), auto1 <  auto2)
+print(colored('<= : ', 'green'), auto1 <= auto2)
+print(colored('== : ', 'green'), auto1 == auto2)
+print(colored('!= : ', 'green'), auto1 != auto2)
+print(colored('>  : ', 'green'), auto1 >  auto2)
+print(colored('>= : ', 'green'), auto1 >= auto2)
 
 
 
 # === Cesar comparison ===
 
 print(colored(f'\n\nCesar comparison\n', 'blue'))
-
-
-print(colored('__lt__ : ', 'green'), cesar1.__lt__(cesar3))
-print(colored('__le__ : ', 'green'), cesar1.__le__(cesar3))
-print(colored('__eq__ : ', 'green'), cesar1.__eq__(cesar3))
-print(colored('__ne__ : ', 'green'), cesar1.__ne__(cesar3))
-print(colored('__gt__ : ', 'green'), cesar1.__gt__(cesar3))
-print(colored('__ge__ : ', 'green'), cesar1.__ge__(cesar3))
+print(colored('<  : ', 'green'), cesar1 <  cesar3)
+print(colored('<= : ', 'green'), cesar1 <= cesar3)
+print(colored('== : ', 'green'), cesar1 == cesar3)
+print(colored('!= : ', 'green'), cesar1 != cesar3)
+print(colored('>  : ', 'green'), cesar1 >  cesar3)
+print(colored('>= : ', 'green'), cesar1 >= cesar3)
