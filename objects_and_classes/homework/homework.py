@@ -258,13 +258,6 @@ print(colored('Count : ', 'green'), cesar1.garages_count())
 
 
 
-# === Garage Count in "cesar 2" ===
-
-print(colored(f'\n\nGarage Count in "cesar 2"\n', 'blue'))
-print(colored('Count : ', 'green'), cesar2.garages_count())
-
-
-
 # === Car change number ===
 
 print(colored(f'\n\nCar change number"\n', 'blue'))
@@ -276,23 +269,29 @@ print(colored('After  : ', 'green'), auto3.number)
 
 # === Car comparison ===
 
-print(colored(f'\n\nCar comparison\n', 'blue'))
+print(colored(f'\n\nCar comparison. auto1 vs auto2\n', 'blue'))
 
-print(colored('<  : ', 'green'), auto1 <  auto2)
-print(colored('<= : ', 'green'), auto1 <= auto2)
-print(colored('== : ', 'green'), auto1 == auto2)
-print(colored('!= : ', 'green'), auto1 != auto2)
-print(colored('>  : ', 'green'), auto1 >  auto2)
-print(colored('>= : ', 'green'), auto1 >= auto2)
+print(colored('Price auto1 : ', 'green'), auto1.price)
+print(colored('Price auto2 : ', 'green'), auto2.price)
+print()
+print(colored('auto1 <  auto2 : ', 'green'), auto1 <  auto2)
+print(colored('auto1 <= auto2 : ', 'green'), auto1 <= auto2)
+print(colored('auto1 == auto2 : ', 'green'), auto1 == auto2)
+print(colored('auto1 != auto2 : ', 'green'), auto1 != auto2)
+print(colored('auto1 >  auto2 : ', 'green'), auto1 >  auto2)
+print(colored('auto1 >= auto2 : ', 'green'), auto1 >= auto2)
 
 
 
 # === Cesar comparison ===
 
-print(colored(f'\n\nCesar comparison\n', 'blue'))
-print(colored('<  : ', 'green'), cesar1 <  cesar3)
-print(colored('<= : ', 'green'), cesar1 <= cesar3)
-print(colored('== : ', 'green'), cesar1 == cesar3)
-print(colored('!= : ', 'green'), cesar1 != cesar3)
-print(colored('>  : ', 'green'), cesar1 >  cesar3)
-print(colored('>= : ', 'green'), cesar1 >= cesar3)
+print(colored(f'\n\nCesar comparison. cesar1 vs cesar3\n', 'blue'))
+print(colored('Price cesar1 : ', 'green'), cesar1.hit_hat())
+print(colored('Price cesar3 : ', 'green'), cesar3.hit_hat())
+print()
+print(colored('cesar1 <  cesar3 : ', 'green'), cesar1 <  cesar3)
+print(colored('cesar1 <= cesar3 : ', 'green'), cesar1 <= cesar3)
+print(colored('cesar1 == cesar3 : ', 'green'), cesar1 == cesar3)
+print(colored('cesar1 != cesar3 : ', 'green'), cesar1 != cesar3)
+print(colored('cesar1 >  cesar3 : ', 'green'), cesar1 >  cesar3)
+print(colored('cesar1 >= cesar3 : ', 'green'), cesar1 >= cesar3)
