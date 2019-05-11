@@ -1,5 +1,5 @@
 from typing import List, Dict, Union, Generator
-import string, random
+
 # We will work with such dicts
 ST = Dict[str, Union[str, int]]
 # And we will put this dicts in list
@@ -14,12 +14,18 @@ def task_1_fix_names_start_letter(data: DT) -> DT:
         fix_names_start_letters([{'name': 'Alex', 'age': 26}, {'name': 'denys', 'age': 89}])
         >>> [{'name': 'Alex', 'age': 26}, {'name': 'Denys', 'age': 89}]
     """
-    for elements in data:
-        if type(elements.get('name')) == str:
-            elements.update({'name': elements.get('name').capitalize()})
-        else:
-            elements.get('name')
-    return data
+    result = {}
+    last_list = []
+    for i in data:
+        for y in i:
+            if i[y] == str(i[y]):
+                result.update({y: (i[y]).capitalize()})
+                r = result.copy()
+            else:
+                result.update({y: i[y]})
+                r = result.copy()
+        last_list.append(r)
+    return last_list
 
 
 def task_2_remove_dict_fields(data: DT, redundant_keys: List[str]) -> DT:
@@ -48,17 +54,23 @@ def task_4_min_value_integers(data: List[int]) -> int:
     """
     Find and return minimum value from list
     """
-    if data:
-        return min(data)
+    if data == []:
+        resoult = None
+    else:
+        resoult = min(data)
+    return resoult
 
 
 def task_5_min_value_strings(data: List[Union[str, int]]) -> str:
     """
     Find the longest string
     """
-    if data:
-        return min([str(x) for x in data], key=len)
-
+    if data == []:
+        min_value = None
+    else:
+        resoult = min([len(str(x)) for x in data])
+        min_value = [str(x) for x in data if len(str(x)) == resoult][0]
+    return min_value
 
 
 def task_6_min_value_list_of_dicts(data: DT, key: str) -> ST:
@@ -126,13 +138,23 @@ def task_10_generator_of_simple_numbers() -> Generator[int, None, None]:
         next(a)
         >>> 3
     """
-    for num in range(1, 201):
-        if num > 1:
-            for i in range(2, num):
-                if num % i == 0:
-                    break
-            else:
-                yield num
+    new_list = []
+    for i in range(2,200):
+        is_simple = True
+
+        if i == 1 or i == 2:
+            new_list.append(i)
+            continue
+
+        for j in range(2, i):
+
+            if i % j == 0:
+                is_simple = False
+                break
+
+        if is_simple:
+            new_list.append(i)
+    return iter(new_list)
 
 
 
@@ -141,5 +163,6 @@ def task_11_create_list_of_random_characters() -> List[str]:
     Create list of 20 elements where each element is random letter from latin alphabet
 
     """
-
-    return [random.choice(string.ascii_lowercase) for _ in range(20)]
+    import string, random
+    my_list = [[x for x in random.choice(string.ascii_lowercase)] for _ in range(20)]
+    return my_list
