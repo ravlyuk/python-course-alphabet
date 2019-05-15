@@ -1,0 +1,9 @@
+{
+    "__class__": "Car",
+    "__module__": "__main__",
+    "price": 5000,
+    "mileage": 2,
+    "producer": "Ford",
+    "type": "Sports Car",
+    "number": "ddfbebbedc0443efba8e7af5dd2c5d3c"
+}

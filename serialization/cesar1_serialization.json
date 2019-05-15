@@ -1,0 +1,25 @@
+{
+    "__class__": "Cesar",
+    "__module__": "__main__",
+    "name": "Tony Stark",
+    "register_id": "7e51baf2bf3b484a87a7cdfda7d2c4ed",
+    "garages": [
+        {
+            "town": "Kiev",
+            "cars": [
+                {
+                    "__class__": "Car",
+                    "__module__": "__main__",
+                    "price": 5000,
+                    "mileage": 2,
+                    "producer": "Ford",
+                    "type": "Sports Car",
+                    "number": "ddfbebbedc0443efba8e7af5dd2c5d3c"
+                }
+            ],
+            "places": 1,
+            "owner": "7e51baf2bf3b484a87a7cdfda7d2c4ed",
+            "number": "da1f652bad8d42d085f75a141971d16b"
+        }
+    ]
+}
