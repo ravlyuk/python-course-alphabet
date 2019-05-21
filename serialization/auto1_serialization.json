@@ -1,0 +1,9 @@
+{
+    "__class__": "Car",
+    "__module__": "__main__",
+    "price": 5000,
+    "mileage": 2,
+    "producer": "Lamborghini",
+    "type": "SUV",
+    "number": "189b3d90356c49cb8cc71e2949636c68"
+}
