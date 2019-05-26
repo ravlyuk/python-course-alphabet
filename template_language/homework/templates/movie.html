@@ -2,9 +2,9 @@
 
 {% extends "layout.html" %}
 
-{% block title %}{{title}}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 {% block head %}
-  {{ super() }}
+    {{ super() }}
 {% endblock %}
 
 {% block any_template %}
@@ -22,7 +22,7 @@
                 <span class="font-weight-bold">Production: </span><span>{{ movie.production }}</span><br>
                 <span class="font-weight-bold">Director: </span><span>{{ movie.director }}</span><br>
                 <span class="font-weight-bold">Actors: </span><span>{{ movie.actors }}</span><br>
-                <span class="font-weight-bold">Awards: </span><span>{{ movie.awards}}</span><br>
+                <span class="font-weight-bold">Awards: </span><span>{{ movie.awards }}</span><br>
                 <span class="font-weight-bold">Runtime: </span><span>{{ movie.runtime }}</span><br>
                 <span class="font-weight-bold">IMDb Rating: </span><span>{{ movie.imdbRating }}</span><br>
                 <span class="font-weight-bold">Box Office: </span><span>{{ movie.boxOffice }}</span><br>

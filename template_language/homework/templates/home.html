@@ -3,27 +3,27 @@
 
 {% extends "layout.html" %}
 
-{% block title %}{{title}}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 {% block head %}
-  {{ super() }}
+    {{ super() }}
 {% endblock %}
 
 {% block any_template %}
 
-<main role="main" class="inner cover my-auto text-center">
-    <h1 class="cover-heading">Top of IMDb.</h1>
-    <p class="lead">
-        List of the best of the best films ever according to
-        <a href="https://www.imdb.com/">Internet Movie Database</a>.
-    </p>
-    <p class="lead mt-5">
-        <a href="/movies" class="btn btn-lg btn-primary">Go to movies list</a>
-    </p>
-</main>
-<footer class="mastfoot mt-auto text-center">
-    <div class="inner">
-        <p>Made by Evgeny Ravlyuk</p>
-    </div>
-</footer>
+    <main role="main" class="inner cover my-auto text-center">
+        <h1 class="cover-heading">Top of IMDb.</h1>
+        <p class="lead">
+            List of the best of the best films ever according to
+            <a href="https://www.imdb.com/">Internet Movie Database</a>.
+        </p>
+        <p class="lead mt-5">
+            <a href="/movies" class="btn btn-lg btn-primary">Go to movies list</a>
+        </p>
+    </main>
+    <footer class="mastfoot mt-auto text-center">
+        <div class="inner">
+            <p>Made by Evgeny Ravlyuk</p>
+        </div>
+    </footer>
 
 {% endblock any_template %}

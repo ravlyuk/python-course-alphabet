@@ -2,39 +2,39 @@
 
 {% extends "layout.html" %}
 
-{% block title %}{{title}}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 {% block head %}
-  {{ super() }}
+    {{ super() }}
 {% endblock %}
 
 {% block any_template %}
     <h1 class="my-5 py-5 text-center">Movies list</h1>
     <div class="row">
-    {% for movie in movies %}
-        {% if movie.get('year')|int >= 2010 %}
-            {% with movie_slug =  movie.get('title') %}
-                <div class="col-sm-6">
-                    <div class="card mb-3" style="max-width: 540px;">
-                        <div class="row no-gutters">
-                            <div class="col-lg-4">
-                                <a href="/{{ movie_slug }}"><img src="{{ movie.poster }}"
-                                    class="card-img" alt="{{ movie_slug }}"></a>
-                            </div>
-                            <div class="col-lg-8">
-                                <div class="card-body">
-                                    <h5 class="card-title"><a href="/{{ movie_slug }}">{{ movie.title }}</a></h5>
-                                    <p class="card-text">{{ movie.plot }}</p>
-                                    <p class="card-text">
-                                        <small class="text-muted">{{ movie.year }},</small>
-                                        <small class="text-muted">{{ movie.director }}</small>
-                                    </p>
+        {% for movie in movies %}
+            {% if movie.get('year')|int >= 2010 %}
+                {% with movie_slug =  movie.get('title') %}
+                    <div class="col-sm-6">
+                        <div class="card mb-3" style="max-width: 540px;">
+                            <div class="row no-gutters">
+                                <div class="col-lg-4">
+                                    <a href="/{{ movie_slug }}"><img src="{{ movie.poster }}"
+                                                                     class="card-img" alt="{{ movie_slug }}"></a>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><a href="/{{ movie_slug }}">{{ movie.title }}</a></h5>
+                                        <p class="card-text">{{ movie.plot }}</p>
+                                        <p class="card-text">
+                                            <small class="text-muted">{{ movie.year }},</small>
+                                            <small class="text-muted">{{ movie.director }}</small>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                 </div>
-            {% endwith %}
-        {% endif %}
-    {% endfor %}
+                {% endwith %}
+            {% endif %}
+        {% endfor %}
     </div>
 {% endblock any_template %}
