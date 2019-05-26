@@ -2,7 +2,10 @@
 <!DOCTYPE html>
 <html lang="en" class="h-100">
 <head>
-    <title>Top IMDb</title>
+    {% block head %}
+        <title>{% block title %}{% endblock %} - Top IMDb</title>
+    {% endblock head %}
+    {#    <title>Top IMDb</title>#}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -34,7 +37,7 @@
 
 
 <div class="container h-100 d-flex flex-column">
-    {#  Insert any templates here  #}
+    {% block any_template %}{% endblock any_template %}
 </div>
 
 
