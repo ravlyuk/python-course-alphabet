@@ -9,17 +9,20 @@ with open('movies.json') as f:
 
 
 @app.route('/')
-def home_page():
+def index_page():
     return render_template('home.html', title='Home')
 
+@app.route('/home')
+def home():
+    return render_template('home.html', title='Home')
 
 @app.route('/movies')
-def movies_page():
+def movies():
     return render_template('movies.html', title='Movies list', movies=MOVIES)
 
 
 @app.route('/<title>')
-def movie_page(title):
+def movie(title):
     for i, movie in enumerate(MOVIES):
         for i, movie in enumerate(MOVIES):
             if MOVIES[i].get('title') == title:

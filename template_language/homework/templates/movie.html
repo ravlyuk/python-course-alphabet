@@ -2,9 +2,9 @@
 
 {% extends "layout.html" %}
 
-{% block title %}{{ title }}{% endblock %}
+{% block title %}{{title}}{% endblock %}
 {% block head %}
-    {{ super() }}
+  {{ super() }}
 {% endblock %}
 
 {% block any_template %}
@@ -18,16 +18,15 @@
         <div class="col-md-8">
             <p class="card-text">{{ movie.get('plot') }}</p>
             <p class="card-text">
-                <span class="font-weight-bold">Year: </span><span>{{ movie.get('year') }}</span><br>
-                <span class="font-weight-bold">Production: </span><span>{{ movie.get('production') }}</span><br>
-                <span class="font-weight-bold">Director: </span><span>{{ movie.get('director') }}</span><br>
-                <span class="font-weight-bold">Actors: </span><span>{{ movie.get('actors') }}</span><br>
-                <span class="font-weight-bold">Awards: </span><span>{{ movie.get('awards') }}</span><br>
-                <span class="font-weight-bold">Runtime: </span><span>{{ movie.get('runtime') }}</span><br>
-                <span class="font-weight-bold">IMDb Rating: </span><span>{{ movie.get('imdbRating') }}</span><br>
-                <span class="font-weight-bold">Box Office: </span><span>$749,700,000</span><br>
-                <span class="font-weight-bold">Website: </span><a
-                    href="{{ movie.get('website') }}">{{ movie.get('website') }}</a><br>
+                <span class="font-weight-bold">Year: </span><span>{{ movie.year }}</span><br>
+                <span class="font-weight-bold">Production: </span><span>{{ movie.production }}</span><br>
+                <span class="font-weight-bold">Director: </span><span>{{ movie.director }}</span><br>
+                <span class="font-weight-bold">Actors: </span><span>{{ movie.actors }}</span><br>
+                <span class="font-weight-bold">Awards: </span><span>{{ movie.awards}}</span><br>
+                <span class="font-weight-bold">Runtime: </span><span>{{ movie.runtime }}</span><br>
+                <span class="font-weight-bold">IMDb Rating: </span><span>{{ movie.imdbRating }}</span><br>
+                <span class="font-weight-bold">Box Office: </span><span>{{ movie.boxOffice }}</span><br>
+                <span class="font-weight-bold">Website: </span><a href="{{ movie.website }}">{{ movie.website }}</a><br>
             </p>
         </div>
     </div>
