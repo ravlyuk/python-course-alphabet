@@ -7,7 +7,6 @@ app = Flask(__name__)
 with open('movies.json') as f:
     MOVIES = json.load(f)
 
-
 @app.route('/')
 @app.route('/home')
 def home():
