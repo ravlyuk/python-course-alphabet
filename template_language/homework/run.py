@@ -9,12 +9,10 @@ with open('movies.json') as f:
 
 
 @app.route('/')
-def index_page():
-    return render_template('home.html', title='Home')
-
 @app.route('/home')
 def home():
     return render_template('home.html', title='Home')
+
 
 @app.route('/movies')
 def movies():
