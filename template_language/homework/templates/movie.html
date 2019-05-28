@@ -6,26 +6,22 @@
 
 {% block any_template %}
 
-    <h1 class="my-5 py-5 text-center">{{ movie.get('title') }}</h1>
+    <h1 class="my-5 py-5 text-center">{{ movie.title }}</h1>
     <div class="row">
         <div class="col-md-4">
-            <img src="{{ movie.get('poster') }}"
-                 class="card-img mb-5" alt="{{ movie.get('title') }}">
+            <img src="{{ movie.poster }}"
+                 class="card-img mb-5" alt="{{ movie.title }}">
         </div>
         <div class="col-md-8">
-            <p class="card-text">{{ movie.get('plot') }}</p>
+            <p class="card-text">{{ movie.plot }}</p>
             <p class="card-text">
-                <span class="font-weight-bold">Year: </span><span>{{ movie.year }}</span><br>
-                <span class="font-weight-bold">Production: </span><span>{{ movie.production }}</span><br>
-                <span class="font-weight-bold">Director: </span><span>{{ movie.director }}</span><br>
-                <span class="font-weight-bold">Actors: </span><span>{{ movie.actors }}</span><br>
-                <span class="font-weight-bold">Awards: </span><span>{{ movie.awards }}</span><br>
-                <span class="font-weight-bold">Runtime: </span><span>{{ movie.runtime }}</span><br>
-                <span class="font-weight-bold">IMDb Rating: </span><span>{{ movie.imdbRating }}</span><br>
-                <span class="font-weight-bold">Box Office: </span><span>{{ movie.boxOffice }}</span><br>
+                {% for name, field in fields.items() %}
+                    <span class="font-weight-bold">{{ name }}: </span><span>{{ movie.get(field) }}</span><br>
+                {% endfor %}
                 <span class="font-weight-bold">Website: </span><a href="{{ movie.website }}">{{ movie.website }}</a><br>
             </p>
         </div>
     </div>
 
 {% endblock any_template %}
+

@@ -7,6 +7,9 @@ app = Flask(__name__)
 with open('movies.json') as f:
     MOVIES = json.load(f)
 
+fields = {'Year': 'year', 'Production': 'production', 'Director': 'director', 'Actors': 'actors', 'Awards': 'awards',
+          'Runtime': 'runtime', 'IMDb Rating': 'imdbRating', 'Box Office': 'boxOffice'}
+
 
 @app.route('/')
 @app.route('/home')
@@ -24,7 +27,7 @@ def movie(title):
     for i, movie in enumerate(MOVIES):
         for i, movie in enumerate(MOVIES):
             if MOVIES[i].get('title') == title:
-                return render_template('movie.html', title=title, movie=MOVIES[i])
+                return render_template('movie.html', title=title, movie=MOVIES[i], fields=fields)
         return render_template('movies.html', title='Movies list', movies=MOVIES)
 
 
