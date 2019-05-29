@@ -1,5 +1,5 @@
 ## Jinja2 Homework
-git 
+Make Top IMDb site from templates.
 
 ### Workflow
 Pull code to your computer, make new virtual environment with Python3 and install requirements from `requirements.txt`.
