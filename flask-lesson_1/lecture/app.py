@@ -3,11 +3,12 @@ import os
 from flask import Flask, request, render_template, jsonify, make_response, abort, url_for, session
 from werkzeug.utils import secure_filename, redirect
 
-from .messenger.routes import messenger
+# from .messenger.routes import messenger
 
 app = Flask(__name__)
 
-app.register_blueprint(messenger)
+
+# app.register_blueprint(messenger)
 
 
 @app.route('/')

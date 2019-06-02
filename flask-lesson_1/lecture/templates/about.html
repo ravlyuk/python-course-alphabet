@@ -9,7 +9,7 @@
         <a href="/home">Home</a>
     </div>
     {% if request.args.get('name') %}
-         <p>{{ "Name is: %s" % request.args.get('name') }}</p>
+        <p>{{ "Name is: %s" % request.args.get('name') }}</p>
     {% endif %}
 
 {% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="my-5 py-5 ">
+            <h1>{{ title }}</h1><br>
+            <ul>
+                {% for vegetable in vegetables_list %}
+                    <li>{{ vegetable }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock content %}
+
