@@ -11,7 +11,7 @@ def main_func():
 
 @main.route("/porn")
 def porn():
-    return redirect(url_for('vegetables.vegetables_manager'))
+    return redirect(url_for('vegetables.vegetables_main'))
 
 
 @main.route("/error")

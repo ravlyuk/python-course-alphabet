@@ -6,14 +6,17 @@ fruits_list = ['Apple', 'Banana', 'Lemon', 'Kiwi', 'Orange']
 
 
 @fruits.route('/fruits')
-def fruit_manager():
+def fruits_main():
     return render_template('fruits.html', title='Fruits', fruits_list=fruits_list)
 
-@fruits.route('/fruits/<string:value>', methods=['POST', 'DELETE'])
-def fruit_route_manager(value=None):
-    if request.method == "POST":
-        fruits_list.append(value)
-        return f"\"{value}\" added!"
-    elif request.method == "DELETE":
-        fruits_list.remove(value)
-        return f"\"{value}\" deleted!"
+
+@fruits.route('/fruits/<string:value>', methods=['POST'])
+def fruit_post(value=None):
+    fruits_list.append(value)
+    return f"\"{value}\" added!"
+
+
+@fruits.route('/fruits/<string:value>', methods=['DELETE'])
+def fruit_delete(value=None):
+    fruits_list.remove(value)
+    return f"\"{value}\" deleted!"
