@@ -81,7 +81,6 @@ import configparser
 import io
 
 
-
 class Car:
 
     def __init__(self, price, mileage: float, producer, type, number=uuid.uuid4()):
@@ -97,7 +96,7 @@ class Car:
 
     def __repr__(self): return f'{vars(self)}'
 
-    def change_car_number(self, number = uuid.uuid4()):
+    def change_car_number(self, number=uuid.uuid4()):
         self.number = number
 
     def __lt__(self, other): return self.price < other.price
@@ -113,7 +112,7 @@ class Car:
 
 class Garage:
 
-    def __init__(self, town, places: int, *cars, number= uuid.uuid4(), owner=None):
+    def __init__(self, town, places: int, *cars, number=uuid.uuid4(), owner=None):
         self.town = town
         self.places = places
         self.owner = owner
@@ -135,19 +134,16 @@ class Garage:
         else:
             print("The garage is full!")
 
-
     def remove(self, car):
         if car in self.cars:
             self.cars.remove(car)
             self.places += 1
-
 
     def hit_hat(self):
         return sum([car.price for car in self.cars])
 
 
 class Cesar:
-
     garages = List[Garage]
     cars = List[Car]
 
@@ -156,17 +152,14 @@ class Cesar:
         self.garages = [garage for garage in garages]
         self.register_id = register_id
 
-
     def __str__(self):
         return f'\nname: {self.name}\ngarages: {self.garages}\nregister_id= {self.register_id}'
 
     def __repr__(self):
         return f'{vars(self)}'
 
-
     def add_garage(self, the_garage):
         self.garages.append(the_garage)
-
 
     def garages_count(self):
         return len(self.garages)
@@ -319,15 +312,12 @@ print(colored('After  : ', 'green'), auto3.number)
 
 print(colored(f'\n\nCar comparison\n', 'blue'))
 
-
 print(colored('<  : ', 'green'), auto1 < auto2)
 print(colored('<= : ', 'green'), auto1 <= auto2)
 print(colored('== : ', 'green'), auto1 == auto2)
 print(colored('!= : ', 'green'), auto1 != auto2)
 print(colored('>  : ', 'green'), auto1 > auto2)
 print(colored('>= : ', 'green'), auto1 >= auto2)
-
-
 
 # === Cesar comparison ===
 
@@ -338,7 +328,6 @@ print(colored('== : ', 'green'), cesar1 == cesar3)
 print(colored('!= : ', 'green'), cesar1 != cesar3)
 print(colored('>  : ', 'green'), cesar1 > cesar3)
 print(colored('>= : ', 'green'), cesar1 >= cesar3)
-
 
 
 # -------HOMEWORK SERELISATION
@@ -353,14 +342,13 @@ def car_deserial(obj):
     return Car(price=price, mileage=mileage, producer=producer, type=type, number=number)
 
 
-
 def garage_deserial(obj):
     places = obj['places']
     owner = obj['owner']
     number = obj['number']
     cars = obj['cars']
     town = obj['town']
-    return Garage(town, places, owner, number,  cars )
+    return Garage(town, places, owner, number, cars)
 
 
 def cesar_deserial(obj):
@@ -379,18 +367,18 @@ def json_hook(obj):
         return cesar_deserial(obj)
 
 
-
 # JSON SERIALIZATION TO STRING
 
 print(colored("\n\n========= SERIALIZATION OBJECT TO JSON ========= \n", 'blue'))
 
+
 def object_to_json(obj):
     return json.loads(json.dumps(obj, cls=JsonConverter, indent=4))
+
 
 json_serialized_auto1 = object_to_json(auto1)
 json_serialized_garage1 = object_to_json(garage1)
 json_serialized_cesar1 = object_to_json(cesar1)
-
 
 print(colored("\n\nauto 1 - SERIALIZATION OBJECT TO JSON\n", 'blue'))
 pprint.pprint(json_serialized_auto1)
@@ -405,9 +393,11 @@ pprint.pprint(json_serialized_cesar1)
 
 print(colored("\n\n=========  SERIALIZATION OBJECT TO FILE ========= \n", 'blue'))
 
+
 def object_to_file(obj, name):
     with open(name, 'w') as file:
         json.dump(obj, file, cls=JsonConverter, indent=4)
+
 
 object_to_file(auto1, 'auto1_serialization.json')
 print('auto1_serialization.json - COMPLETE\n')
@@ -418,15 +408,16 @@ print('garage1_serialization.json - COMPLETE\n')
 object_to_file(cesar1, 'cesar1_serialization.json')
 print('cesar1_serialization.json - COMPLETE\n')
 
-
 # JSON DESERIALIZATION WITHOUT FILE
 
 
 print(colored("\n\nJSON DESERIALIZATION WITHOUT FILE\n", 'blue'))
 
+
 def deserialization_without_file(name):
     with open(name, 'r') as file:
         return json.load(file, object_hook=json_hook)
+
 
 auto1_des = deserialization_without_file("auto1_serialization.json")
 print(colored('\n\nauto1 deserialization:', 'green'))
