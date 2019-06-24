@@ -1,19 +1,19 @@
 {
     "__class__": "Garage",
     "__module__": "serialization.homework",
-    "town": "Rome",
+    "town": "Berlin",
     "places": 1,
     "owner": null,
-    "number": "4f58ab94556a48f8afa4017a3066b2bd",
+    "number": "63dbfd57f9aa4063a6e6d28562344639",
     "cars": [
         {
             "__class__": "Car",
             "__module__": "serialization.homework",
             "price": 5000,
             "mileage": 2,
-            "producer": "Buick",
-            "type": "Truck",
-            "number": "64024992dff846ad9e217794500fb8f8"
+            "producer": "Ford",
+            "type": "SUV",
+            "number": "5b0bfe29c7144c1dabf391c269f115ae"
         }
     ]
 }

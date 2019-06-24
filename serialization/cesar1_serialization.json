@@ -1,23 +1,25 @@
 {
     "__class__": "Cesar",
-    "__module__": "__main__",
+    "__module__": "serialization.homework",
     "name": "Tony Stark",
-    "register_id": "822e1af13a2246d789f64260f8c7be6b",
+    "register_id": "fe3c36add91d4510b891e4390997e5a5",
     "garages": [
         {
-            "town": "Kiev",
+            "__class__": "Garage",
+            "__module__": "serialization.homework",
+            "town": "Rome",
             "places": 1,
-            "owner": "822e1af13a2246d789f64260f8c7be6b",
-            "number": "4647a2f1a0eb47589ae72813bb7e9a88",
+            "owner": null,
+            "number": "4f58ab94556a48f8afa4017a3066b2bd",
             "cars": [
                 {
                     "__class__": "Car",
-                    "__module__": "__main__",
+                    "__module__": "serialization.homework",
                     "price": 5000,
                     "mileage": 2,
-                    "producer": "Lamborghini",
-                    "type": "SUV",
-                    "number": "189b3d90356c49cb8cc71e2949636c68"
+                    "producer": "Buick",
+                    "type": "Truck",
+                    "number": "64024992dff846ad9e217794500fb8f8"
                 }
             ]
         }

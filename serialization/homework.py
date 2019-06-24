@@ -69,6 +69,7 @@ Advanced
 
 import random
 import uuid
+import pprint
 from constants import *
 from termcolor import colored
 import json
@@ -80,35 +81,102 @@ import configparser
 import io
 
 
-class Cesar:
 
-    def __init__(self, name, garages=0):
-        self.name = name
-        self.garages = []
-        self.register_id = uuid.uuid4()
+class Car:
+
+    def __init__(self, price, mileage: float, producer, type, number=uuid.uuid4()):
+        self.price = price
+        self.type = type
+        self.producer = producer
+        self.number = number
+        self.mileage = mileage
 
     def __str__(self):
-        return f'\nname: {self.name}\ngarages: {self.garages}\nregister_id: {self.register_id}'
+        return f'\nprice: {self.price}\ntype: {self.type}\nproducer: {self.producer}\nnumber: {self.number}\n' \
+            f'mileage: {self.mileage}'
+
+    def __repr__(self): return f'{vars(self)}'
+
+    def change_car_number(self, number = uuid.uuid4()):
+        self.number = number
+
+    def __lt__(self, other): return self.price < other.price
+
+    def __le__(self, other): return self.price <= other.price
+
+    def __ne__(self, other): return self.price != other.price
+
+    def __gt__(self, other): return self.price > other.price
+
+    def __ge__(self, other): return self.price >= other.price
+
+
+class Garage:
+
+    def __init__(self, town, places: int, *cars, number= uuid.uuid4(), owner=None):
+        self.town = town
+        self.places = places
+        self.owner = owner
+        self.number = number
+        self.cars = list(cars)
+
+    def __str__(self):
+        return f'\ntown: {self.town}\nplaces: {self.places}\nowner: {self.owner}\ncars: {self.cars}'
 
     def __repr__(self):
         return f'{vars(self)}'
 
-    def add_garage(self, the_garage):
-        if not the_garage.owner:
-            vars(the_garage).update({'owner': self.register_id})
-            self.garages.append(vars(the_garage))
+    def add_car_into_garage(self, car):
+        if self.places:
+            # print('=============')
+            # print(type(self.places), self.places)
+            self.cars.append(car)
+            self.places -= 1
         else:
-            print('This garage already belongs to another collector.')
+            print("The garage is full!")
+
+
+    def remove(self, car):
+        if car in self.cars:
+            self.cars.remove(car)
+            self.places += 1
+
+
+    def hit_hat(self):
+        return sum([car.price for car in self.cars])
+
+
+class Cesar:
+
+    garages = List[Garage]
+    cars = List[Car]
+
+    def __init__(self, name, *garages, register_id=uuid.uuid4()):
+        self.name = name
+        self.garages = [garage for garage in garages]
+        self.register_id = register_id
+
+
+    def __str__(self):
+        return f'\nname: {self.name}\ngarages: {self.garages}\nregister_id= {self.register_id}'
+
+    def __repr__(self):
+        return f'{vars(self)}'
+
+
+    def add_garage(self, the_garage):
+        self.garages.append(the_garage)
+
 
     def garages_count(self):
         return len(self.garages)
 
     def cars_count(self):
-        return sum([len(garage.get('cars')) for garage in self.garages])
+        return sum([len(garage[0].cars) for garage in self.garages])
 
     def hit_hat(self):
         # return sum([int(garage.get('hit_hat_var')) for garage in self.garages])
-        return sum([sum([car.price for car in garage.get('cars')]) for garage in self.garages])
+        return sum([sum([car.price for car in garage.cars]) for garage in self.garages])
 
     def add_car(self, car, into_garage=False):
         if not into_garage:
@@ -143,69 +211,6 @@ class Cesar:
 
     def __ge__(self, other):
         return self.hit_hat() >= other.hit_hat()
-
-
-class Car:
-
-    def __init__(self, price, mileage: float, producer, type):
-        self.price = price
-        self.type = type
-        self.producer = producer
-        self.number = uuid.uuid4()
-        self.mileage = mileage
-
-    def __str__(self):
-        return f'\nprice: {self.price}\ntype: {self.type}\nproducer: {self.producer}\nnumber: {self.number}\n' \
-            f'mileage: {self.mileage}'
-
-    def __repr__(self): return f'{vars(self)}'
-
-    def change_car_number(self): self.number = uuid.uuid4()
-
-    def __lt__(self, other): return self.price < other.price
-
-    def __le__(self, other): return self.price <= other.price
-
-    def __eq__(self, other): return self.price == other.price
-
-    def __ne__(self, other): return self.price != other.price
-
-    def __gt__(self, other): return self.price > other.price
-
-    def __ge__(self, other): return self.price >= other.price
-
-
-class Garage:
-
-    def __init__(self, town, places: int, number=None, owner=None):
-        self.town = town
-        self.places = places
-        self.owner = owner
-        self.number = uuid.uuid4()
-        self.cars = []
-
-    def __str__(self):
-        return f'\ntown: {self.town}\nplaces: {self.places}\nowner: {self.owner}\ncars: {self.cars}'
-
-    def __repr__(self):
-        return f'{vars(self)}'
-
-    def add_car_into_garage(self, car):
-        if self.places:
-            self.cars.append(car)
-        else:
-            print("The garage is full!")
-        self.places -= 1
-
-    def remove(self, car):
-        if car in self.cars:
-            self.cars.remove(car)
-        else:
-            print("This car is not in the garage!")
-        self.places += 1
-
-    def hit_hat(self):
-        return sum([car.price for car in self.cars])
 
 
 class JsonConverter(json.JSONEncoder):
@@ -314,12 +319,15 @@ print(colored('After  : ', 'green'), auto3.number)
 
 print(colored(f'\n\nCar comparison\n', 'blue'))
 
+
 print(colored('<  : ', 'green'), auto1 < auto2)
 print(colored('<= : ', 'green'), auto1 <= auto2)
 print(colored('== : ', 'green'), auto1 == auto2)
 print(colored('!= : ', 'green'), auto1 != auto2)
 print(colored('>  : ', 'green'), auto1 > auto2)
 print(colored('>= : ', 'green'), auto1 >= auto2)
+
+
 
 # === Cesar comparison ===
 
@@ -332,6 +340,7 @@ print(colored('>  : ', 'green'), cesar1 > cesar3)
 print(colored('>= : ', 'green'), cesar1 >= cesar3)
 
 
+
 # -------HOMEWORK SERELISATION
 
 
@@ -341,8 +350,8 @@ def car_deserial(obj):
     producer = obj['producer']
     type = obj['type']
     number = uuid.UUID(obj['number'], version=4)
-    car = Car(price=price, mileage=mileage, producer=producer, type=type)
-    return car
+    return Car(price=price, mileage=mileage, producer=producer, type=type, number=number)
+
 
 
 def garage_deserial(obj):
@@ -351,16 +360,14 @@ def garage_deserial(obj):
     number = obj['number']
     cars = obj['cars']
     town = obj['town']
-    garage = Garage(places, town, owner, town)
-    return garage
+    return Garage(town, places, owner, number,  cars )
 
 
 def cesar_deserial(obj):
     name = obj['name']
     register_id = uuid.UUID(obj['register_id'], version=4)
     garages = obj['garages']
-    cesar = Cesar(name, *garages, register_id=register_id)
-    return cesar
+    return Cesar(name, *garages, register_id=register_id)
 
 
 def json_hook(obj):
@@ -372,60 +379,63 @@ def json_hook(obj):
         return cesar_deserial(obj)
 
 
+
 # JSON SERIALIZATION TO STRING
 
-print(colored("\n\n========= JSON SERIALIZATION TO STRING ========= \n", 'blue'))
+print(colored("\n\n========= SERIALIZATION OBJECT TO JSON ========= \n", 'blue'))
 
-json_serialized_car = json.dumps(auto1, cls=JsonConverter, indent=4)
-json_serialized_garage = json.dumps(garage1, cls=JsonConverter, indent=4)
-json_serialized_cesar = json.dumps(cesar1, cls=JsonConverter, indent=4)
+def object_to_json(obj):
+    return json.loads(json.dumps(obj, cls=JsonConverter, indent=4))
 
-print(colored("\n\nauto 1 - JSON SERIALIZATION TO FILE\n", 'blue'))
-print(json_serialized_car)
+json_serialized_auto1 = object_to_json(auto1)
+json_serialized_garage1 = object_to_json(garage1)
+json_serialized_cesar1 = object_to_json(cesar1)
 
-print(colored("\n\ngarage 1 - JSON SERIALIZATION TO FILE\n", 'blue'))
-print(json_serialized_garage)
 
-print(colored("\n\ncesar 1 - JSON SERIALIZATION TO FILE\n", 'blue'))
-print(json_serialized_cesar)
+print(colored("\n\nauto 1 - SERIALIZATION OBJECT TO JSON\n", 'blue'))
+pprint.pprint(json_serialized_auto1)
+
+print(colored("\n\ngarage 1 - SERIALIZATION OBJECT TO JSON\n", 'blue'))
+pprint.pprint(json_serialized_garage1)
+
+print(colored("\n\ncesar 1 - SERIALIZATION OBJECT TO JSON\n", 'blue'))
+pprint.pprint(json_serialized_cesar1)
 
 # JSON SERIALIZATION TO FILE
 
-# print(colored("\n\n=========  JSON SERIALIZATION TO FILE ========= \n", 'blue'))
+print(colored("\n\n=========  SERIALIZATION OBJECT TO FILE ========= \n", 'blue'))
 
+def object_to_file(obj, name):
+    with open(name, 'w') as file:
+        json.dump(obj, file, cls=JsonConverter, indent=4)
 
-with open('auto1_serialization.json', 'w') as file:
-    json.dump(auto1, file, cls=JsonConverter, indent=4)
-    print('auto1_serialization.json - COMPLETE\n')
+object_to_file(auto1, 'auto1_serialization.json')
+print('auto1_serialization.json - COMPLETE\n')
 
-with open('garage1_serialization.json', 'w') as file:
-    json.dump(garage1, file, cls=JsonConverter, indent=4)
-    print('garage1_serialization.json - COMPLETE\n')
+object_to_file(garage1, 'garage1_serialization.json')
+print('garage1_serialization.json - COMPLETE\n')
 
-with open('cesar1_serialization.json', 'w') as file:
-    json.dump(cesar1, file, cls=JsonConverter, indent=4)
-    print('cesar1_serialization.json - COMPLETE\n')
+object_to_file(cesar1, 'cesar1_serialization.json')
+print('cesar1_serialization.json - COMPLETE\n')
 
-#
 
 # JSON DESERIALIZATION WITHOUT FILE
 
+
 print(colored("\n\nJSON DESERIALIZATION WITHOUT FILE\n", 'blue'))
 
-print("\n\nStarting auto1_serialization")
-with open('auto1_serialization.json', 'r') as file:
-    auto1_deserialization = json.load(file, object_hook=json_hook)
+def deserialization_without_file(name):
+    with open(name, 'r') as file:
+        return json.load(file, object_hook=json_hook)
+
+auto1_des = deserialization_without_file("auto1_serialization.json")
 print(colored('\n\nauto1 deserialization:', 'green'))
-print(auto1_deserialization)
+pprint.pprint(auto1_des)
 
-print("\n\nStarting garage1_serialization")
-with open('garage1_serialization.json', 'r') as file:
-    garage1_deserialization = json.load(file, object_hook=json_hook)
+garage1_des = deserialization_without_file("garage1_serialization.json")
 print(colored('\n\ngarage1 deserialization:', 'green'))
-print(garage1_deserialization)
+pprint.pprint(garage1_des)
 
-print("\n\nStarting cesar1_serialization")
-with open('cesar1_serialization.json', 'r') as file:
-    cesar1_deserialization = json.load(file, object_hook=json_hook)
-print(colored('\n\ncesar1 deserialization:', 'green'))
-print(cesar1_deserialization)
+cesar1_des = deserialization_without_file("cesar1_serialization.json")
+print(colored('\n\ncesar1 deserializaion:', 'green'))
+pprint.pprint(cesar1_des)
